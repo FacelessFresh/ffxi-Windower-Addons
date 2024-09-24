@@ -3684,7 +3684,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             name = 'Leafstorm',
             level = 0, -- Highland Treant
             mob = 'Highland Treant',
-            estimated_locations = {}
+            estimated_locations = {'Conflux#7 J 7-8'}
         },
         {
             name = 'Blazing Bound',
