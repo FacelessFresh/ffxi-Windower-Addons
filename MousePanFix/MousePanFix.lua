@@ -6,7 +6,7 @@
 --]]
 
 _addon.name = 'MousePanFix'
-_addon.author = 'Faceless if this works, otherwise blame it on ChatGPT'
+_addon.author = 'Faceless'
 _addon.version = '8.675309'
 _addon.commands = {'mousepanfix', 'mpf'}
 
