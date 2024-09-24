@@ -6,6 +6,7 @@ _addon.commands = {'bs'}
 local res = require('resources') -- Importing the resources library
 local spells = require('spells') -- Table with spell data
 local texts = require('texts') -- Importing the texts library for UI
+config = require('config') -- Importing the config library for settings management
 
 local ui = {} -- To store our UI components
 local known_spells = {} -- Known spells to be populated dynamically
@@ -18,13 +19,16 @@ local job = windower.ffxi.get_player().main_job
 local default_scale_factor = 1.0  -- Default scale factor
 local scale_factor = default_scale_factor  -- Current scale factor
 
--- Default UI settings
-local settings = {
+-- Default settings with values that will be overridden by the loaded config
+local defaults = {
     text = {font = 'Arial', size = 12 * scale_factor, color = {255, 255, 255, 255}},
     pos = {x = 100, y = 100},
     bg = {alpha = 128, red = 0, green = 0, blue = 0},
     flags = {bold = false, italic = false}
 }
+
+-- Load settings from the config file
+local settings = config.load(defaults)
 
 -- Create the UI window
 ui.window = texts.new(settings)
@@ -103,10 +107,11 @@ end
 -- Function to set the scale of the UI
 local function set_scale(factor)
     scale_factor = factor
-    local new_size = settings.text.size * scale_factor
-    ui.window:size(new_size)
+    settings.text.size = 12 * scale_factor  -- Update size in settings
+    ui.window:size(settings.text.size)
     windower.add_to_chat(207, "BLUSpellTracker: UI scale set to " .. tostring(factor))
     update_ui()  -- Refresh UI with new scale
+    config.save(settings)  -- Save updated settings
 end
 
 -- Command to display help information
@@ -149,6 +154,7 @@ local function reset_scale()
     ui.window:size(settings.text.size)  -- Update the window size
     windower.add_to_chat(207, "BLUSpellTracker: UI scale reset to default (1.0)")
     update_ui()  -- Refresh the UI
+    config.save(settings)  -- Save updated settings
 end
 
 -- Command to change scale
@@ -183,3 +189,32 @@ windower.register_event('load', function()
     -- Display initial data
     update_ui()
 end)
+
+-- Function to save the current position settings to the config file
+local function save_position()
+    config.save(settings)  -- Save settings including position
+end
+
+-- Add commands to change UI position
+windower.register_event('addon command', function(command, ...)
+    local args = {...}
+    command = command and command:lower() or ''
+
+    if command == 'pos' then
+        local x = tonumber(args[1])
+        local y = tonumber(args[2])
+        if x and y then
+            settings.pos.x = x
+            settings.pos.y = y
+            ui.window:pos(x, y)  -- Update the window position
+            windower.add_to_chat(207, "BLUSpellTracker: Position set to X: " .. x .. " Y: " .. y)
+            save_position()  -- Save updated position to the config
+            update_ui()  -- Refresh the UI
+        else
+            windower.add_to_chat(167, "BLUSpellTracker: Invalid position value. Usage: //bs pos <x> <y>")
+        end
+    end
+end)
+
+-- Set initial position of the UI window
+ui.window:pos(settings.pos.x, settings.pos.y)
