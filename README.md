@@ -1,1 +1,2 @@
 I'm still somewhat new at programming. I have some experience in it but everything with it is a learning curve. Hopefully everything will work good for others.
+I won't lie about it... I definitely utilized ai some with figuring out the proper coding that I didn't know the commands for, and as well for the long tedious job of converting guides into code like in the spells.lua in the bluspelltracker. For that, ChatGPT gets the MVP for it. I can honestly say that it's teaching me as I go at least and I'm learning new tricks.
