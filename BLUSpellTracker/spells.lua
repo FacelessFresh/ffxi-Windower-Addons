@@ -3966,7 +3966,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         {
             name = 'Anvil Lightning',
             level = 0,
-            mob = '',
+            mob = 'Ungeweder (Wind)',
             estimated_locations = {}
         },
         {
@@ -3984,7 +3984,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         {
             name = 'Saurian Slide',
             level = 0,
-            mob = '',
+            mob = 'Velkk',
             estimated_locations = {}
         },
         {
