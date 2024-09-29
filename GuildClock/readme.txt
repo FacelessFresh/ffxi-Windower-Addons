@@ -11,6 +11,8 @@ The **GuildClock** addon for Final Fantasy XI is designed to help players manage
 - Lock or unlock the clock's position on the screen.
 - Change the text size and font of the clock.
 
+The UI for this will display the Day: Time: Weather: and the show the status of all the guilds displaying whether they are open or closed.
+
 ## Commands
 
 ### /guildclock show
