@@ -127,17 +127,13 @@ local drag_offset = {x = 0, y = 0}
 local locked = true -- Variable to track lock status
 
 function lock_ui()
-    windower.add_to_chat(207, "Locking UI")
     locked = true
     settings.flags.draggable = false
-    windower.add_to_chat(207, "Draggable set to: " .. tostring(settings.flags.draggable))
 end
 
 function unlock_ui()
-    windower.add_to_chat(207, "Unlocking UI")
     locked = false
     settings.flags.draggable = true
-    windower.add_to_chat(207, "Draggable set to: " .. tostring(settings.flags.draggable))
 end
 -- Mouse Event Handler
 windower.register_event('mouse', function(type, x, y, delta, blocked)
