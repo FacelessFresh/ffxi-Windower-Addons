@@ -74,6 +74,7 @@ Here are the available values:
 
 
 Version History:
+867.5309 - Added setfont and setsize to change this info dynamically and limited the ui display to show what is relevant to your current level, master level, etc. Now it'll show only xp when under 75, then merits: and xp info till you hit 99, then it shows cp info, and merits and jp obtained when you're job pointing, and then it will who ep merits and jp when you're master leveling.
 0.211112 - Added ep.current, ep.rate, and ep.tnml.
 0.150811 - Changed job_points from a char to a short.
 0.150201 - Added Unity Accolades.
