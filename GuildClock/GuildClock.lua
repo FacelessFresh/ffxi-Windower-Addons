@@ -124,32 +124,61 @@ end
 -- Register mouse events for dragging
 local dragging = false
 local drag_offset = {x = 0, y = 0}
-local locked = false -- Variable to track lock status
+local locked = true -- Variable to track lock status
 
-windower.register_event('mouse', function(event, x, y)
-    if locked then return end -- Do not allow dragging if locked
+function lock_ui()
+    windower.add_to_chat(207, "Locking UI")
+    locked = true
+    settings.flags.draggable = false
+    windower.add_to_chat(207, "Draggable set to: " .. tostring(settings.flags.draggable))
+end
 
-    if event == 1 then -- Left mouse button down
-        local width, height = ui_text:size()
+function unlock_ui()
+    windower.add_to_chat(207, "Unlocking UI")
+    locked = false
+    settings.flags.draggable = true
+    windower.add_to_chat(207, "Draggable set to: " .. tostring(settings.flags.draggable))
+end
+-- Mouse Event Handler
+windower.register_event('mouse', function(type, x, y, delta, blocked)
+    if locked then
+		dragging = false -- Stop dragging if locked
+        return false -- Prevent further handling if locked
+    end
+
+    -- Get UI dimensions and set defaults if nil
+    local width, height = ui_text:size()
+    if width == nil then
+        width = 20 -- Set default values if size is unavailable
+    end
+	if height == nil then
+		height = 300 -- Set default values if size is unavailable
+	end
+
+    if type == 1 then -- Left mouse button down
         if x >= settings.pos.x and x <= settings.pos.x + width and
            y >= settings.pos.y and y <= settings.pos.y + height then
             dragging = true
             drag_offset.x = x - settings.pos.x
             drag_offset.y = y - settings.pos.y
+            return true -- Event handled: start dragging
         end
-    elseif event == 2 then -- Left mouse button up
+    elseif type == 2 then -- Left mouse button up
         dragging = false
+        return true -- Event handled: stop dragging
+    elseif type == 0 then -- Mouse move
+        if dragging then
+            settings.pos.x = x - drag_offset.x
+            settings.pos.y = y - drag_offset.y
+            ui_text:pos(settings.pos.x, settings.pos.y) -- Update UI position
+            return true -- Event handled: update position
+        end
     end
+
+    return false -- Allow other handlers to process if not handled
 end)
 
--- Update position while dragging
-windower.register_event('mouse move', function(x, y)
-    if dragging then
-        settings.pos.x = x - drag_offset.x
-        settings.pos.y = y - drag_offset.y
-        ui_text:pos(settings.pos.x, settings.pos.y) -- Update position
-    end
-end)
+
 
 -- Function to update the UI periodically
 local function updateUI()
@@ -180,12 +209,12 @@ windower.register_event('addon command', function(command, ...)
     if command == 'show' then
         createUI()
         start_update_timer() -- Start the timer when showing the UI
-    elseif command == 'lock' then
-        locked = true
-        windower.add_to_chat(207, "UI is now locked and cannot be moved.")
-    elseif command == 'unlock' then
-        locked = false
-        windower.add_to_chat(207, "UI is now unlocked and can be moved.")
+	elseif command == 'lock' then
+		lock_ui()  -- Call the function to lock the UI
+		windower.add_to_chat(207, "UI locked. You cannot drag it now.")
+	elseif command == 'unlock' then
+		unlock_ui()  -- Call the function to unlock the UI
+		windower.add_to_chat(207, "UI unlocked. You can now drag it.")
     elseif command == 'hide' then
         ui_text:hide()
         windower.add_to_chat(207, "GuildClock UI hidden.")
