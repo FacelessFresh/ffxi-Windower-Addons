@@ -46,18 +46,4 @@
             </stroke>
         </text>
     </global>
-    <faceless>
-        <layout>horizontal</layout>
-        <pos>
-            <x>0</x>
-            <y>1332</y>
-        </pos>
-        <text>
-            <font>rockwell</font>
-            <fonts>
-
-            </fonts>
-            <size>10</size>
-        </text>
-    </faceless>
 </settings>
