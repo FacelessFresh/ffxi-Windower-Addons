@@ -259,15 +259,27 @@ local function get_job_points_spent()
 end
 
 function update_box()
-	-- Call the analyze_points_table function to calculate rates
-    cp.rate = analyze_points_table(cp.registry)
-    xp.rate = analyze_points_table(xp.registry)
-    ep.rate = analyze_points_table(ep.registry)
     if not windower.ffxi.get_info().logged_in or not windower.ffxi.get_player() then
         box.current_string = ''
         return
     end
-    
+	-- Call the analyze_points_table function to calculate rates
+    cp.rate = analyze_points_table(cp.registry)
+    xp.rate = analyze_points_table(xp.registry)
+    ep.rate = analyze_points_table(ep.registry)
+    if dynamis.entry_time ~= 0 and dynamis.entry_time+dynamis.time_limit-os.clock() > 0 then
+        dynamis.time_remaining = os.date('!%H:%M:%S',dynamis.entry_time+dynamis.time_limit-os.clock())
+        dynamis.KIs = X_or_O(dynamis._KIs.Crimson)..X_or_O(dynamis._KIs.Azure)..X_or_O(dynamis._KIs.Amber)..X_or_O(dynamis._KIs.Alabaster)..X_or_O(dynamis._KIs.Obsidian)
+    elseif abyssea.update_time ~= 0 then
+        local time_less_then = math.floor((os.clock() - abyssea.update_time)/60)
+        abyssea.time_remaining = abyssea.time_remaining-time_less_then
+        if time_less_then >= 1 then
+            abyssea.update_time = os.clock()
+        end
+    else
+        dynamis.time_remaining = 0
+        dynamis.KIs = ''
+    end
     local player = windower.ffxi.get_player()
 
     -- Call get_job_points_spent to gather job points information
@@ -296,27 +308,16 @@ function update_box()
     local ep_current = ep.current or 0
     local ep_tnl = ep.tnl or 0 -- Default value for ep.tnl
 
-
-
-    -- Check for master level achievement and display relevant information
+    -- Check for master level achievement and Display EP/hr if available
     if jobpointsspent >= 2100 then
         current_string = current_string .. string.format('Merit Points: %d | Job Points: %d | EP: %d @ %d /hr\n', 
             merit_points, job_points, ep_current, ep.rate)
-    else
-        current_string = current_string .. string.format('Job Points Spent for Master Level: %d\n', jobpointsspent)
     end
-	--assert(cur_func)()
     -- Update the box display with the current string
     if box.current_string ~= current_string then
         box.current_string = current_string
     end
 end
-
-
-
-
-
-
 
 function X_or_O(bool)
     if bool then return 'O' else return 'X' end
