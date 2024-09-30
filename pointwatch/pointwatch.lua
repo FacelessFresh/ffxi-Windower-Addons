@@ -302,11 +302,6 @@ function update_box()
     if jobpointsspent >= 2100 then
         current_string = current_string .. string.format('Merit Points: %d | Job Points: %d | EP: %d @ %d /hr\n', 
             merit_points, job_points, ep_current, ep.rate)
-
-        -- Display EP/hr if available
-        if ep.rate then
-            current_string = current_string .. string.format('EP/hr: %d\n', ep.rate)
-        end
     else
         current_string = current_string .. string.format('Job Points Spent for Master Level: %d\n', jobpointsspent)
     end
