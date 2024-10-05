@@ -290,11 +290,11 @@ function update_box()
 
     -- Show XP if below level 99
     if player.main_job_level <= 74 then
-        current_string = current_string .. string.format('XP: %d @ %d /hr\n', xp.current, "@", xp.rate, "/hr")
+        current_string = current_string .. string.format('XP: %d @ %d /hr\n', xp.current, xp.rate)
     end
 	
 	if player.main_job_level >= 75 and not player.main_job_level == 99 then
-        current_string = current_string .. string.format('Merit Points: %d | XP: %d @ %d /hr\n', merit_points, xp.current, "@", xp.rate, "/hr")
+        current_string = current_string .. string.format('Merit Points: %d | XP: %d @ %d /hr\n', merit_points, xp.current, xp.rate)
     end
     
     -- If at level 99, show CP and Merit Points
