@@ -116,10 +116,23 @@ end
 
 -- Create the UI and set initial position
 local function createUI()
-    ui_text:show() -- Show the UI
-    ui_text:pos(settings.pos.x, settings.pos.y) -- Set initial position
-    update_guild_status() -- Update guild status on UI creation
+	if windower.ffxi.get_info().logged_in then
+		ui_text:show() -- Show the UI
+		ui_text:pos(settings.pos.x, settings.pos.y) -- Set initial position
+		update_guild_status() -- Update guild status on UI creation
+	else
+		ui_text:hide()
+	end
 end
+
+-- Called whenever character logs in.
+windower.register_event('login', function()
+    createUI()
+end)
+-- Called whenever character logs out.
+windower.register_event('logout', function()
+    ui_text:hide()  -- Hide the UI
+end)
 
 -- Register mouse events for dragging
 local dragging = false
@@ -201,16 +214,17 @@ end)
 -- Command handler for '/guildclock' command
 windower.register_event('addon command', function(command, ...)
     command = command and command:lower() or ''
-    
+    local args = {...} -- Get additional arguments for the command
+
     if command == 'show' then
         createUI()
         start_update_timer() -- Start the timer when showing the UI
-	elseif command == 'lock' then
-		lock_ui()  -- Call the function to lock the UI
-		windower.add_to_chat(207, "UI locked. You cannot drag it now.")
-	elseif command == 'unlock' then
-		unlock_ui()  -- Call the function to unlock the UI
-		windower.add_to_chat(207, "UI unlocked. You can now drag it.")
+    elseif command == 'lock' then
+        lock_ui()  -- Call the function to lock the UI
+        windower.add_to_chat(207, "UI locked. You cannot drag it now.")
+    elseif command == 'unlock' then
+        unlock_ui()  -- Call the function to unlock the UI
+        windower.add_to_chat(207, "UI unlocked. You can now drag it.")
     elseif command == 'hide' then
         ui_text:hide()
         windower.add_to_chat(207, "GuildClock UI hidden.")
@@ -232,16 +246,25 @@ windower.register_event('addon command', function(command, ...)
         else
             windower.add_to_chat(207, "Usage: /guildclock setfont [font name]")
         end
+    elseif command == 'layout' then
+        if args[1] == 'horizontal' or args[1] == 'vertical' then
+            settings.layout = args[1]
+            update_guild_status() -- Update the UI to reflect the new layout
+            windower.add_to_chat(207, "Layout changed to " .. args[1])
+        else
+            windower.add_to_chat(207, "Usage: /guildclock layout [horizontal|vertical]")
+        end
     elseif command == 'help' then
-        windower.add_to_chat(207, "GuildClock Commands:");
-        windower.add_to_chat(207, "/guildclock show - Show the GuildClock UI");
-        windower.add_to_chat(207, "/guildclock hide - Hide the GuildClock UI");
-        windower.add_to_chat(207, "/guildclock lock - Lock the UI position");
-        windower.add_to_chat(207, "/guildclock unlock - Unlock the UI position");
-        windower.add_to_chat(207, "/guildclock setsize [size] - Change text size");
-        windower.add_to_chat(207, "/guildclock setfont [font name] - Change text font");
+        windower.add_to_chat(207, "GuildClock Commands:")
+        windower.add_to_chat(207, "/guildclock show - Show the GuildClock UI")
+        windower.add_to_chat(207, "/guildclock hide - Hide the GuildClock UI")
+        windower.add_to_chat(207, "/guildclock lock - Lock the UI position")
+        windower.add_to_chat(207, "/guildclock unlock - Unlock the UI position")
+        windower.add_to_chat(207, "/guildclock setsize [size] - Change text size")
+        windower.add_to_chat(207, "/guildclock setfont [font name] - Change text font")
+        windower.add_to_chat(207, "/guildclock layout [horizontal|vertical] - Change the UI layout")
     else
-        windower.add_to_chat(207, "Usage: /guildclock [show | hide | lock | unlock | setsize | setfont | help]");
+        windower.add_to_chat(207, "Usage: /guildclock [show | hide | lock | unlock | setsize | setfont | layout | help]")
     end
 end)
 
