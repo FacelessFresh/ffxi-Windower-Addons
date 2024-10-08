@@ -1,0 +1,21 @@
+<?xml version="1.1" ?>
+<settings>
+    <global>
+        <buffs>
+            <customOrder>true</customOrder>
+            <filterMode>blacklist</filterMode>
+            <filters />
+        </buffs>
+        <hideSolo>false</hideSolo>
+        <layout>auto</layout>
+        <posX>50</posX>
+        <posY>400</posY>
+        <rangeIndicator>0</rangeIndicator>
+        <spacingY>4</spacingY>
+    </global>
+    <faceless>
+        <layout>sleek</layout>
+        <posX>2256</posX>
+        <posY>1397</posY>
+    </faceless>
+</settings>
