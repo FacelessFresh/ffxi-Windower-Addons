@@ -28,7 +28,7 @@
 
 local defaults = {}
 
-defaults.layout = 'sleek' -- active UI layout, found in XivParty/layouts directory. use 'auto' for automatic resolution based selection
+defaults.layout = 'Sleek' -- active UI layout, found in XivParty/layouts directory. use 'auto' for automatic resolution based selection
 
 defaults.posX = 50 -- x screen position of the party list
 defaults.posY = 400 -- y screen position of the party list
