@@ -472,7 +472,7 @@ function isPetJob()
 	if not player then
 		return false
 	end
-	return S{"SMN","PUP", "BST", "GEO"}:contains(windower.ffxi.get_player().main_job)
+	return S{"SMN","PUP", "BST", "GEO", "DRG"}:contains(windower.ffxi.get_player().main_job)
 end
 
 function loadLayout(layoutName)
