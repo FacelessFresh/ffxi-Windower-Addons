@@ -60,14 +60,4 @@
             <size>10</size>
         </text>
     </assaulthelper.json>
-    <faceless>
-        <pos>
-            <x>3</x>
-            <y>793</y>
-        </pos>
-        <text>
-            <font>rockwell</font>
-            <size>10</size>
-        </text>
-    </faceless>
 </settings>
