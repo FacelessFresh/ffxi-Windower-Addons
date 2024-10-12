@@ -16,7 +16,7 @@ Installation
 Download the addon: Clone or download the AssaultHelper files into your Windower addons directory.
 Load the addon: Use the command //assault or //ah in-game to activate the UI.
 Commands
-//assault or //ah: Opens the AssaultHelper UI.
+-Addon Commands that operate this addon are 'assaulthelper', 'assault', 'ah', and 'ass'-
 //assault help: Displays help information for the addon.
 //assault wrap <number>: Sets the word wrap limit.
 //assault setfont <font_name>: Sets the font for the UI.
