@@ -251,9 +251,20 @@ local function get_job_points_spent()
     local player = windower.ffxi.get_player()
     local jobpointsspent = 0
 
-    -- Calculate job points spent for the Blue Mage job
-    for k, v in pairs(player.job_points.blu) do
-        jobpointsspent = jobpointsspent + (v^2 + v) / 2
+    -- Get the player's current main job
+    local main_job = player.main_job:lower()
+
+    -- List of categories that represent job point expenditure
+    local valid_categories = {
+        'jp_spent'
+    }
+
+    -- Calculate job points spent for the current main job
+    for k, v in pairs(player.job_points[main_job]) do
+        -- Only count categories that are in valid_categories
+        if v > 0 and table.contains(valid_categories, k) then
+            jobpointsspent = jobpointsspent + v
+        end
     end
     return jobpointsspent
 end
@@ -293,26 +304,26 @@ function update_box()
         current_string = current_string .. string.format('XP: %d @ %d /hr\n', xp.current, xp.rate)
     end
 	
-	if player.main_job_level >= 75 and not player.main_job_level == 99 then
-        current_string = current_string .. string.format('Merit Points: %d | XP: %d @ %d /hr\n', merit_points, xp.current, xp.rate)
-    end
-    
-    -- If at level 99, show CP and Merit Points
-    if player.main_job_level == 99 and not jobpointsspent == 2100 then
-        current_string = current_string .. string.format('Merit Points: %d | Job Points: %d | CP: %d @ %d /hr\n', merit_points, job_points, cp.current, cp.rate)
-    end
-
     -- Set default values to avoid nil issues
     local merit_points = lp.number_of_merits or 0
     local job_points = cp.number_of_job_points or 0
     local ep_current = ep.current or 0
     local ep_tnl = ep.tnl or 0 -- Default value for ep.tnl
+	
+	if player.main_job_level >= 75 and player.main_job_level ~= 99 then
+        current_string = current_string .. string.format('Merit Points: %d | XP: %d @ %d /hr\n', merit_points, xp.current, xp.rate)
+    end
+
+    if player.main_job_level == 99 and jobpointsspent ~= 2100 then
+        current_string = current_string .. string.format('Merit Points: %d | Job Points: %d | CP: %d @ %d /hr\n', merit_points, job_points, cp.current, cp.rate)
+    end
 
     -- Check for master level achievement and Display EP/hr if available
     if jobpointsspent >= 2100 then
         current_string = current_string .. string.format('Merit Points: %d | Job Points: %d | EP: %d @ %d /hr\n', 
             merit_points, job_points, ep_current, ep.rate)
     end
+
     -- Update the box display with the current string
     if box.current_string ~= current_string then
         box.current_string = current_string
