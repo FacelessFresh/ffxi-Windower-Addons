@@ -2810,6 +2810,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             mob = 'Soulflayer',
             estimated_locations = {}
         },
+		{
+            name = 'Regeneration',
+            level = 78,
+            mob = 'Lahama',
+            estimated_locations = {}
+        },
         {
             name = 'Animating Wail',
             level = 79,
@@ -3560,6 +3566,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
 	
 	-- Abyssea Region
     [45] = { -- Abyssea - Tahrongi
+		{
+            name = 'Death Ray',
+            level = 34,
+            mob = 'Beholder',
+            estimated_locations = {'G-8'}
+        },
         {
             name = 'Acrid Stream',
             level = 77,
@@ -3731,6 +3743,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
     },
 
     [217] = { -- Abyssea - Vunkerl
+		{
+			name = 'Spiral Spin',
+            level = 60,
+            mob = 'Ladybug',
+            estimated_locations = {'I-11'}
+		},
         {
             name = 'Benthic Typhoon',
             level = 83,
@@ -3966,7 +3984,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         {
             name = 'Anvil Lightning',
             level = 0,
-            mob = 'Ungeweder (Wind)',
+            mob = '',
             estimated_locations = {}
         },
         {
@@ -3984,7 +4002,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         {
             name = 'Saurian Slide',
             level = 0,
-            mob = 'Velkk',
+            mob = '',
             estimated_locations = {}
         },
         {
@@ -4035,6 +4053,18 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
     },
 
     [265] = { -- Morimar Basalt Fields
+        {
+            name = 'Delta Thrust',
+            level = 89,
+            mob = 'Mountain Peiste',
+            estimated_locations = {'Bivouac #5'}
+        },
+		{
+            name = 'Embalming Earth',
+            level = 99,
+            mob = 'Sinewy Matamata',
+            estimated_locations = {'Bivouac #3'}
+        },
         {
             name = 'Paralyzing Triad',
             level = 99,
