@@ -2352,7 +2352,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Saline Coat',
-            level = 0, -- Level not specified
+            level = 72, -- Level not specified
             mob = 'Xzomit',
             estimated_locations = {}
         },
@@ -2385,7 +2385,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Reactor Cool',
-            level = 0, -- Level not specified
+            level = 74, -- Level not specified
             mob = 'Zdei',
             estimated_locations = {}
         },
@@ -2412,7 +2412,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Reactor Cool',
-            level = 0, -- Level not specified
+            level = 74, -- Level not specified
             mob = 'Zdei',
             estimated_locations = {}
         },
@@ -3491,7 +3491,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Winds of Promyvion',
+            name = 'Winds of Promy.',
             level = 89,
             mob = 'Thinker',
             estimated_locations = {}
@@ -3557,7 +3557,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Winds of Promyvion',
+            name = 'Winds of Promy.',
             level = 89,
             mob = 'Thinker',
             estimated_locations = {}
@@ -3604,7 +3604,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Absolute Terror',
-            level = 0, -- NM Naul
+            level = 96, -- NM Naul
             mob = 'Wyrm',
             estimated_locations = {}
         }
@@ -3630,7 +3630,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Winds of Promyvion',
+            name = 'Winds of Promy.',
             level = 89,
             mob = 'Thinkers',
             estimated_locations = {}
@@ -3694,7 +3694,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Leafstorm',
-            level = 0, -- Highland Treant
+            level = 77, -- Highland Treant
             mob = 'Highland Treant',
             estimated_locations = {'Conflux#7 J 7-8'}
         },
@@ -3706,7 +3706,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Demoralizing Roar',
-            level = 0, -- Mesa Wivre
+            level = 80, -- Mesa Wivre
             mob = 'Mesa Wivre',
             estimated_locations = {}
         },
@@ -3850,7 +3850,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Lowing',
-            level = 0, -- Bluffalo
+            level = 71, -- Bluffalo
             mob = 'Bluffalo',
             estimated_locations = {}
         },
@@ -3874,13 +3874,13 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Restoral',
-            level = 0, -- Sub-Zero Gear
+            level = 99, -- Sub-Zero Gear
             mob = 'Sub-Zero Gear',
             estimated_locations = {}
         },
         {
             name = 'Diffusion Ray',
-            level = 0, -- Refitted Chariot
+            level = 99, -- Refitted Chariot
             mob = 'Refitted Chariot',
             estimated_locations = {}
         }
@@ -3938,38 +3938,38 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Searing Tempest',
-            level = 0,
+            level = 99,
             mob = 'Baelfyr (Fire weather)',
             estimated_locations = {}
         },
         {
             name = 'Anvil Lightning',
-            level = 0,
+            level = 99,
             mob = 'Ungeweder (Wind)',
             estimated_locations = {}
         },
         {
             name = 'Glutinous Dart',
-            level = 0,
+            level = 99,
             mob = 'Velkk',
             estimated_locations = {}
         },
         {
             name = 'Saurian Slide',
-            level = 0,
+            level = 99,
             mob = 'Velkk',
             estimated_locations = {}
         },
         {
             name = 'Paralyzing Triad',
-            level = 0,
+            level = 99,
             mob = 'Umbrils',
             estimated_locations = {}
         },
         {
-            name = 'Unbridled Learning',
+            name = 'Droning Whirlwind',
             level = 99,
-            mob = 'Droning Whirlwind',
+            mob = 'Colkhab',
             estimated_locations = {'WKR'}
         }
     },
@@ -3983,31 +3983,31 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Anvil Lightning',
-            level = 0,
-            mob = '',
+            level = 99,
+            mob = 'Ungeweder (Wind)',
             estimated_locations = {}
         },
         {
             name = 'Retinal Glare',
-            level = 0,
+            level = 99,
             mob = 'Panopts',
             estimated_locations = {}
         },
         {
             name = 'Glutinous Dart',
-            level = 0,
+            level = 99,
             mob = 'Velkk',
             estimated_locations = {}
         },
         {
             name = 'Saurian Slide',
-            level = 0,
-            mob = '',
+            level = 99,
+            mob = 'Velkk',
             estimated_locations = {}
         },
         {
             name = 'Paralyzing Triad',
-            level = 0,
+            level = 99,
             mob = 'Umbrils',
             estimated_locations = {}
         }
@@ -4022,32 +4022,32 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Spectral Floe',
-            level = 0,
+            level = 99,
             mob = 'Gefyrst (Rain)',
             estimated_locations = {}
         },
         {
             name = 'Glutinous Dart',
-            level = 0,
+            level = 99,
             mob = 'Velkk',
             estimated_locations = {}
         },
         {
             name = 'Saurian Slide',
-            level = 0,
+            level = 99,
             mob = 'Velkk',
             estimated_locations = {}
         },
         {
             name = 'Paralyzing Triad',
-            level = 0,
+            level = 99,
             mob = 'Umbrils',
             estimated_locations = {}
         },
         {
-            name = 'Unbridled Learning',
+            name = 'Carcharian Verve',
             level = 99,
-            mob = 'Carcharian Verve',
+            mob = 'Tchakka',
             estimated_locations = {'WKR'}
         }
     },
@@ -4072,9 +4072,9 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Unbridled Learning',
+            name = 'Blistering Roar',
             level = 99,
-            mob = 'Blistering Roar',
+            mob = 'Achuka',
             estimated_locations = {'WKR'}
         }
     },
@@ -4088,46 +4088,46 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Retinal Glare',
-            level = 0,
+            level = 99,
             mob = 'Panopts',
             estimated_locations = {}
         },
         {
             name = 'Paralyzing Triad',
-            level = 0,
+            level = 99,
             mob = 'Umbrils',
             estimated_locations = {}
         },
         {
             name = 'Nectarous Deluge',
-            level = 0,
+            level = 99,
             mob = 'Snapweeds',
             estimated_locations = {}
         },
         {
-            name = 'Unbridled Learning',
+            name = 'Uproot',
             level = 99,
-            mob = 'Uproot',
+            mob = 'Yumcax',
             estimated_locations = {'WKR'}
         }
     },
 
     [264] = { -- Yorcia Weald (U)
         {
-            name = 'Unbridled Learning',
+            name = 'Polar Roar',
             level = 99,
-            mob = 'Polar Roar',
+            mob = 'Utkux',
             estimated_locations = {'Delve'}
         },
         {
             name = 'Crashing Thunder',
-            level = 0,
+            level = 99,
             mob = 'Waktza',
             estimated_locations = {'Delve'}
         },
         {
             name = 'Uproot',
-            level = 0,
+            level = 99,
             mob = 'Yggdreants',
             estimated_locations = {'Delve'}
         }
@@ -4142,20 +4142,20 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Saurian Slide',
-            level = 0,
+            level = 99,
             mob = 'Velkk',
             estimated_locations = {}
         },
         {
             name = 'Molting Plumage',
-            level = 0,
+            level = 99,
             mob = 'Tulfaires',
             estimated_locations = {}
         },
         {
-            name = 'Unbridled Learning',
+            name = 'Crashing Thunder',
             level = 99,
-            mob = 'Crashing Thunder',
+            mob = 'Hurkan',
             estimated_locations = {'WKR'}
         }
     },
@@ -4169,14 +4169,14 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Sweeping Gouge',
-            level = 0,
+            level = 99,
             mob = 'Raaz',
             estimated_locations = {}
         },
         {
-            name = 'Unbridled Learning',
+            name = 'Polar Roar',
             level = 99,
-            mob = 'Polar Roar',
+            mob = 'Kumhau',
             estimated_locations = {'WKR'}
         }
     },
@@ -4199,25 +4199,25 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Anvil Lightning',
-            level = 0,
+            level = 99,
             mob = 'Ungeweder (Wind)',
             estimated_locations = {}
         },
         {
             name = 'Scouring Spate',
-            level = 0,
+            level = 99,
             mob = 'Gefyrst (Rain)',
             estimated_locations = {}
         },
         {
             name = 'Spectral Floe',
-            level = 0,
+            level = 99,
             mob = 'Gefyrst (Rain)',
             estimated_locations = {}
         },
         {
             name = 'Foul Waters',
-            level = 0,
+            level = 99,
             mob = 'Acuexes',
             estimated_locations = {}
         }
@@ -4232,7 +4232,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Saurian Slide',
-            level = 0,
+            level = 99,
             mob = 'Velkk',
             estimated_locations = {}
         }
@@ -4247,7 +4247,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Paralyzing Triad',
-            level = 0,
+            level = 99,
             mob = 'Umbrils',
             estimated_locations = {}
         }
@@ -4262,19 +4262,19 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Foul Waters',
-            level = 0,
+            level = 99,
             mob = 'Acuexes',
             estimated_locations = {}
         },
         {
             name = 'Subduction',
-            level = 0,
+            level = 99,
             mob = 'Maroliths',
             estimated_locations = {}
         },
         {
             name = 'Paralyzing Triad',
-            level = 0,
+            level = 99,
             mob = 'Umbrils',
             estimated_locations = {}
         }
@@ -4289,25 +4289,25 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Paralyzing Triad',
-            level = 0,
+            level = 99,
             mob = 'Umbrils',
             estimated_locations = {}
         },
         {
-            name = 'Unbridled Learning',
+            name = 'Blistering Roar',
             level = 99,
-            mob = 'Blistering Roar',
+            mob = 'Tojil',
             estimated_locations = {'Delve'}
         },
         {
             name = 'Carcharian Verve',
-            level = 0,
+            level = 99,
             mob = 'Rockfins',
             estimated_locations = {'Delve'}
         },
         {
             name = 'Droning Whirlwind',
-            level = 0,
+            level = 99,
             mob = 'Bztavians',
             estimated_locations = {'Delve'}
         }
@@ -4322,19 +4322,19 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Poison Breath',
-            level = 0,
+            level = 22,
             mob = 'Hounds',
             estimated_locations = {}
         },
         {
             name = 'Terror Touch',
-            level = 0,
+            level = 40,
             mob = 'Ghosts',
             estimated_locations = {}
         },
         {
             name = 'Blood Saber',
-            level = 0,
+            level = 48,
             mob = 'Skeletons',
             estimated_locations = {}
         },
@@ -4346,43 +4346,43 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Entomb',
-            level = 0,
+            level = 99,
             mob = 'Byrgen',
             estimated_locations = {}
         },
         {
             name = 'Tenebral Crush',
-            level = 0,
+            level = 99,
             mob = 'Byrgen',
             estimated_locations = {}
         },
         {
             name = 'Barbed Crescent',
-            level = 0,
+            level = 99,
             mob = 'Fomors',
             estimated_locations = {}
         },
         {
             name = 'Palling Salvo',
-            level = 0,
+            level = 99,
             mob = 'Fluturini',
             estimated_locations = {}
         },
         {
             name = 'Foul Waters',
-            level = 0,
+            level = 99,
             mob = 'Acuexes',
             estimated_locations = {}
         },
         {
             name = 'Paralyzing Triad',
-            level = 0,
+            level = 99,
             mob = 'Umbrils',
             estimated_locations = {}
         },
         {
-            name = 'Atramentous Libations',
-            level = 0,
+            name = 'Atra. Libations',
+            level = 99,
             mob = 'Dullahans',
             estimated_locations = {}
         }
@@ -4396,75 +4396,69 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'MP Drainkiss',
-            level = 0,
-            mob = 'Leeches',
-            estimated_locations = {}
-        },
-        {
-            name = 'Blood Drain',
-            level = 0,
-            mob = 'Giant Bats',
-            estimated_locations = {}
-        },
-        {
-            name = 'Jet Stream',
-            level = 0,
-            mob = 'Bat Trios',
-            estimated_locations = {}
-        },
-        {
-            name = 'Corrosive Ooze',
-            level = 0,
-            mob = 'Slugs',
-            estimated_locations = {}
-        },
-        {
-            name = 'Sickle Slash',
-            level = 0,
-            mob = 'Spiders',
-            estimated_locations = {}
-        },
-        {
-            name = 'Geist Wall',
-            level = 0,
-            mob = 'Efts',
-            estimated_locations = {}
-        },
-        {
             name = 'Queasyshroom',
-            level = 0,
+            level = 8,
             mob = 'Funguars',
             estimated_locations = {}
         },
         {
-            name = 'Filamented Hold',
-            level = 0,
-            mob = 'Diremites',
+            name = 'Blood Drain',
+            level = 20,
+            mob = 'Giant Bats',
             estimated_locations = {}
         },
-        {
+		{
+            name = 'Screwdriver',
+            level = 26,
+            mob = 'Pugils',
+            estimated_locations = {}
+        },
+		{
             name = 'Digest',
-            level = 0,
+            level = 36,
             mob = 'Slimes',
             estimated_locations = {}
         },
         {
-            name = 'Screwdriver',
-            level = 0,
-            mob = 'Pugils',
+            name = 'Jet Stream',
+            level = 38,
+            mob = 'Bat Trios',
+            estimated_locations = {}
+        },
+		{
+            name = 'MP Drainkiss',
+            level = 42,
+            mob = 'Leeches',
+            estimated_locations = {}
+        },
+		{
+            name = 'Geist Wall',
+            level = 46,
+            mob = 'Efts',
+            estimated_locations = {}
+        },
+        {
+            name = 'Sickle Slash',
+            level = 48,
+            mob = 'Spiders',
+            estimated_locations = {}
+        },
+        {
+            name = 'Filamented Hold',
+            level = 52,
+            mob = 'Diremites',
+            estimated_locations = {}
+        },
+		{
+            name = 'Corrosive Ooze',
+            level = 66,
+            mob = 'Slugs',
             estimated_locations = {}
         }
     },
 	
 	-- Escha Region
     [288] = { -- Escha - Zi'Tah
-        {
-            name = 'Unbridled Learning',
-            level = 99,
-            mob = 'Absolute Terror',
-            estimated_locations = {'DI'}
-        },
         {
             name = 'Memento Mori',
             level = 62,
@@ -4473,7 +4467,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Body Slam',
-            level = 0,
+            level = 62,
             mob = 'Dragons',
             estimated_locations = {}
         },
@@ -4495,6 +4489,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             mob = 'Puks',
             estimated_locations = {}
         },
+		{
+            name = 'Absolute Terror',
+            level = 96,
+            mob = 'Domain Invasion',
+            estimated_locations = {'Domain Invasion'}
+        },
         {
             name = 'Wind Breath',
             level = 99,
@@ -4503,7 +4503,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         }
     },
 
-    [259] = { -- Escha - Ru'Aun
+    [289] = { -- Escha - Ru'Aun
         {
             name = 'Amplification',
             level = 60,
@@ -4530,7 +4530,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Saline Coat',
-            level = 0,
+            level = 72,
             mob = 'Xzomit',
             estimated_locations = {}
         },
@@ -4548,7 +4548,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Reactor Cool',
-            level = 0,
+            level = 74,
             mob = 'Zdei',
             estimated_locations = {}
         },
@@ -4560,7 +4560,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
         },
         {
             name = 'Plasma Charge',
-            level = 0,
+            level = 75,
             mob = 'Phuabo',
             estimated_locations = {}
         },
@@ -4588,6 +4588,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             mob = 'Amoebans',
             estimated_locations = {}
         },
+		{
+            name = 'Winds of Promy.',
+            level = 89,
+            mob = 'Warder of Dignity',
+            estimated_locations = {'Eschan Portal# 4'}
+        },
         {
             name = 'Dark Orb',
             level = 93,
@@ -4607,10 +4613,10 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Unbridled Learning',
+            name = 'Bloodrake',
             level = 99,
-            mob = 'Bloodrake',
-            estimated_locations = {}
+            mob = 'Sava Savanovic',
+            estimated_locations = {'Geas Fete'}
         }
     }
 	
