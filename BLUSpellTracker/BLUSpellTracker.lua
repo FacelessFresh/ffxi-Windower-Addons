@@ -133,7 +133,7 @@ windower.register_event('zone change', function(new_id)
     update_ui()
 end)
 
--- Listen for the incoming text (system messages) to detect when a spell is learned
+-- Method 1: Refresh UI when a spell is learned (via system message)
 windower.register_event('incoming text', function(original, modified, mode)
     -- Check if it's a system message with the correct mode
     if mode == 129 then
@@ -142,6 +142,19 @@ windower.register_event('incoming text', function(original, modified, mode)
         if original:contains(learning_message) then
             -- Immediately load known spells and update UI
             load_known_spells()
+            update_ui()
+        end
+    end
+end)
+
+-- Method 2: Refresh UI after each battle (via action event)
+windower.register_event('action', function(act)
+    local player_id = windower.ffxi.get_player().id
+
+    if act.actor_id == player_id then
+        -- Check if combat has ended
+        if not windower.ffxi.get_player().in_combat then
+			load_known_spells()
             update_ui()
         end
     end
@@ -174,6 +187,9 @@ windower.register_event('addon command', function(command, ...)
                 windower.add_to_chat(167, "BLUSpellTracker: Invalid scale value. Usage: //bs scale <factor> or //bs scale r")
             end
         end
+	elseif command == 'refresh' then
+		load_known_spells()
+		update_ui() -- Refresh the UI
     elseif command == 'help' then
         display_help()  -- Show help information
     else
