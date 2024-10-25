@@ -1038,7 +1038,16 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         }
     },
-
+	
+	[93] = { -- Ruhotz Silvermines
+		{
+			name = 'Thrashing Assault',
+			level = 99,
+			mob = 'Meebles',
+			estimated_locations = {'Scattered'}
+		}
+	},
+	
     [200] = { -- Garlaige Citadel
         {
             name = 'Power Attack',
@@ -2476,7 +2485,13 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             level = 98,
             mob = 'Flan',
             estimated_locations = {}
-        }
+        },
+		{
+            name = 'Erratic Flutter',
+            level = 99,
+            mob = 'Wamoura',
+            estimated_locations = {}
+        }		
     },
 
     [61] = { -- Mount Zhayolm
@@ -2514,38 +2529,44 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             name = 'Amplification',
             level = 70,
             mob = 'Flan',
-            estimated_locations = {}
+            estimated_locations = {'Tunnel around HP#1'}
         },
         {
             name = 'Cannonball',
             level = 75,
             mob = 'Wamoura',
-            estimated_locations = {}
+            estimated_locations = {'C-7'}
         },
         {
             name = 'Exuviation',
             level = 75,
             mob = 'Wamoura',
-            estimated_locations = {}
+            estimated_locations = {'C-7'}
         },
         {
             name = 'Thermal Pulse',
             level = 86,
             mob = 'Wamouracampa',
-            estimated_locations = {}
+            estimated_locations = {'C-7'}
         },
         {
             name = 'Amorphic Spikes',
             level = 98,
             mob = 'Flan',
-            estimated_locations = {}
+            estimated_locations = {'Tunnel around HP#1'}
         },
         {
             name = 'Gates of Hades',
             level = 97,
             mob = 'Cerberus',
             estimated_locations = {}
-        }
+        },
+				{
+            name = 'Erratic Flutter',
+            level = 99,
+            mob = 'Wamoura',
+            estimated_locations = {'C-7'}
+        }	
     },
 
     [75] = { -- Bhaflau Thickets
@@ -3348,6 +3369,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
     },
 	
     [137] = { -- Xarcabard (S)
+	    {
+            name = 'Frightful Roar',
+            level = 50,
+            mob = 'Gorgotaur',
+            estimated_locations = {}
+        },
         {
             name = 'Frenetic Rip',
             level = 63,
@@ -3458,7 +3485,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Quadratic Continuum',
+            name = 'Quad. Continuum',
             level = 85,
             mob = 'Gorger',
             estimated_locations = {}
@@ -3539,7 +3566,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Quadratic Continuum',
+            name = 'Quad. Continuum',
             level = 85,
             mob = 'Gorger',
             estimated_locations = {}
@@ -3717,7 +3744,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Quadratic Continuum',
+            name = 'Quad. Continuum',
             level = 85,
             mob = 'Gorgers',
             estimated_locations = {}
@@ -3834,65 +3861,70 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             name = 'Cold Wave',
             level = 52,
             mob = 'Snowflake',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 7'}
         },
         {
             name = 'Voracious Trunk',
             level = 64,
             mob = 'Olyphant',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 7'}
         },
         {
             name = 'Filamented Hold',
             level = 71,
             mob = 'Diremite',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 6'}
         },
         {
             name = 'Lowing',
             level = 71, -- Bluffalo
             mob = 'Bluffalo',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 4'}
         },
         {
             name = 'Barrier Tusk',
             level = 91,
             mob = 'Marid',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 7'}
         },
         {
             name = 'Dark Orb',
             level = 93,
             mob = 'Gargouille',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 12'}
         },
         {
             name = 'Triumphant Roar',
             level = 99,
             mob = 'Benumbed Vodigra',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 12'}
         },
         {
             name = 'Restoral',
             level = 99, -- Sub-Zero Gear
             mob = 'Sub-Zero Gear',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 7'}
+        },
+		{
+            name = 'Sinker Drill',
+            level = 99,
+            mob = 'Mechanical Menaace',
+            estimated_locations = {'Conflux# 7'}
+        },
+		{
+            name = 'Rail Cannon',
+            level = 99, -- Sub-Zero Gear
+            mob = 'Sub-Zero Gear',
+            estimated_locations = {'Conflux# 7'}
         },
         {
             name = 'Diffusion Ray',
             level = 99, -- Refitted Chariot
             mob = 'Refitted Chariot',
-            estimated_locations = {}
+            estimated_locations = {'Conflux# 7'}
         }
     },
-
     [254] = { -- Abyssea - Grauberg
-        {
-            name = 'Sinker Drill',
-            level = 93,
-            mob = 'Acroliths',
-            estimated_locations = {}
-        },
         {
             name = 'Thunder Breath',
             level = 97,
@@ -3903,6 +3935,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             name = 'Pyric Bulwark',
             level = 98,
             mob = 'Hydra',
+            estimated_locations = {}
+        },
+		        {
+            name = 'Sinker Drill',
+            level = 99,
+            mob = 'Acroliths',
             estimated_locations = {}
         }
     },
@@ -4339,7 +4377,7 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             estimated_locations = {}
         },
         {
-            name = 'Tempestuous Upheaval',
+            name = 'Tem. Upheaval',
             level = 99,
             mob = 'Twitherym',
             estimated_locations = {}
