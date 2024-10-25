@@ -3998,6 +3998,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             mob = 'Velkk',
             estimated_locations = {}
         },
+		{
+            name = 'Nat. Meditation',
+            level = 99,
+            mob = 'Chapuli',
+            estimated_locations = {'Scattered'}
+        },
         {
             name = 'Paralyzing Triad',
             level = 99,
@@ -4041,6 +4047,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             name = 'Saurian Slide',
             level = 99,
             mob = 'Velkk',
+            estimated_locations = {}
+        },
+		{
+            name = 'Nat. Meditation',
+            level = 99,
+            mob = 'Chapuli',
             estimated_locations = {}
         },
         {
@@ -4225,6 +4237,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             level = 99,
             mob = 'Panopts',
             estimated_locations = {}
+        },
+		{
+            name = 'Nat. Meditation',
+            level = 99,
+            mob = 'Chapuli',
+            estimated_locations = {''}
         }
     },
 
@@ -4258,6 +4276,12 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             level = 99,
             mob = 'Acuexes',
             estimated_locations = {}
+        },
+		        {
+            name = 'Nat. Meditation',
+            level = 99,
+            mob = 'Chapuli',
+            estimated_locations = {''}
         }
     },
 
@@ -4656,6 +4680,67 @@ return { --https://ffxiclopedia.fandom.com/wiki/Blue_Magic:What%27s_where Credit
             mob = 'Sava Savanovic',
             estimated_locations = {'Geas Fete'}
         }
+    },
+	    [291] = { -- Reisenjima
+		{
+            name = 'Power Attack',
+            level = 4,
+            mob = 'Rampaging Beetle',
+            estimated_locations = {}
+        },
+        {
+            name = 'Claw Cyclone',
+            level = 20,
+            mob = 'Snaggletoothed Tiger',
+            estimated_locations = {}
+        },
+        {
+            name = 'Jettatura',
+            level = 48,
+            mob = 'Quarrelsome Hippogryph',
+            estimated_locations = {}
+        },
+        {
+            name = 'Magic Hammer',
+            level = 74,
+            mob = 'Wretched Poroggo',
+            estimated_locations = {}
+        },
+        {
+            name = 'Final Sting',
+            level = 81,
+            mob = 'Devouring Mosquito',
+            estimated_locations = {}
+        },
+        {
+            name = 'Fantod',
+            level = 85,
+            mob = 'Quarrelsome Hippogryph',
+            estimated_locations = {}
+        },
+        {
+            name = 'Water Bomb',
+            level = 92,
+            mob = 'Wretched Poroggo',
+            estimated_locations = {}
+        },
+        {
+            name = 'Sweeping Gouge',
+            level = 99,
+            mob = 'Indomitable Faaz',
+            estimated_locations = {}
+        },
+        {
+            name = 'Retinal Glare',
+            level = 99,
+            mob = 'Panopts',
+            estimated_locations = {}
+        },
+        {
+            name = 'Nat. Meditation',
+            level = 99,
+            mob = 'Chapuli',
+            estimated_locations = {'Close to the Zone In'}
+        }
     }
-	
 }
