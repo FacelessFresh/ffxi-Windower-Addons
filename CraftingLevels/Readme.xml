@@ -1,0 +1,79 @@
+CraftingLevels Addon for FFXI
+Author
+
+Faceless
+Version
+
+8675.3.09
+Description
+
+The CraftingLevels addon for Final Fantasy XI (FFXI) tracks and displays the current levels of all crafting skills (Fishing, Woodworking, Smithing, Goldsmithing, Clothcraft, Leathercraft, Bonecraft, Alchemy, Cooking). The addon provides a configurable display window to show the crafting levels and allows you to customize font settings, position, and size.
+Features
+
+    Tracks and displays crafting skill levels in real time.
+    Supports nine crafting skills: Fishing, Woodworking, Smithing, Goldsmithing, Clothcraft, Leathercraft, Bonecraft, Alchemy, and Cooking.
+    Customizable display with options for font type, size, and window position.
+    Toggle visibility of the display box.
+    Command-based settings adjustments (font, font size, position).
+
+Installation
+
+    Download and extract the CraftingLevels addon into your FFXI addons directory.
+    The directory structure should be:
+
+    addons/CraftingLevels/
+    ├── CraftingLevels.lua
+    └── README.md
+
+Configuration
+
+Upon loading, the addon will read and save crafting skill levels from a configuration file. The following options can be configured:
+
+    skill_levels: A table that stores the levels of the nine crafting skills. By default, they are set to 0.0.
+    font: Font to use for the display text. Default is 'Rockwell'.
+    fontsize: Font size for the display text. Default is 10.
+    pos: Position of the display window on the screen, represented as an {x, y} coordinate. Default is {x = 0, y = 700}.
+
+These settings can be changed in-game via commands.
+Commands
+
+The addon supports the following commands:
+
+    /craftinglevels toggle
+    Toggles the visibility of the crafting levels display.
+
+    /craftinglevels setfont [font name]
+    Changes the font used in the display. Example usage: /craftinglevels setfont Arial.
+
+    /craftinglevels setfontsize [size]
+    Changes the font size used in the display. Example usage: /craftinglevels setfontsize 14.
+
+    /craftinglevels setpos [x] [y]
+    Changes the position of the display box. Example usage: /craftinglevels setpos 100 200.
+
+Events
+
+    Login: The addon will initialize and display crafting levels when you log in to the game or change jobs.
+    Job Change: The addon will refresh the crafting levels display upon job changes.
+    Incoming Text: The addon updates the crafting skill levels when a skill-up occurs.
+
+How It Works
+
+    Upon initialization, the addon loads the saved crafting skill levels from the configuration file.
+    If a crafting skill has leveled up during gameplay, the addon updates the displayed levels in real-time.
+    The display box can be moved, and its settings (font, size, position) can be customized using the provided commands.
+
+Troubleshooting
+
+    If the crafting levels are not displaying, ensure that the addon is correctly installed in your FFXI addons directory.
+    If the display is not visible after login, try toggling it with /craftinglevels toggle.
+
+Credits
+
+    Faceless (Developer)
+
+License
+
+This addon is released under the MIT License. Feel free to use, modify, and distribute.
+
+This readme should give users a clear understanding of the CraftingLevels addon, its features, and how to install and configure it.
