@@ -156,6 +156,13 @@ windower.register_event('unload', function()
     config.save(settings) -- Save settings upon unload
 end)
 
--- Update crafting levels when the player logs in or changes jobs
-windower.register_event('login', initialize_skill_levels)
-windower.register_event('job change', initialize_skill_levels)
+-- Ensure the display box is hidden properly when logging out
+windower.register_event('logout', function()
+    display_box:hide()  -- Hide the box when logging out
+end)
+
+-- Ensure the display box is hidden properly when switching characters
+windower.register_event('login', function()
+    display_box:hide()  -- Hide the box when logging in (could be redundant but ensures it is hidden)
+    initialize_skill_levels()  -- Re-initialize skill levels on login
+end)
