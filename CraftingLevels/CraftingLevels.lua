@@ -72,7 +72,24 @@ end
 
 -- Update settings and save when a skill-up occurs
 windower.register_event('incoming text', function(original, modified, mode)
-    if original:contains('skill rises') then
+	    -- Handle the case where a skill reaches a new level (e.g., "Leathercraft skill reaches level 3")
+    if mode == 129 and original:contains('skill reaches level') then
+        for skill_key, skill_name in pairs(crafting_skills) do
+            if original:lower():contains(skill_name:lower()) then
+                -- Extract the new level from the message
+                local new_level = original:match('level (%d+)')
+                if new_level then
+                    -- Update the skill level to the new level
+                    skill_levels[skill_name] = tonumber(new_level)
+                    settings.skill_levels[skill_name] = skill_levels[skill_name]
+                    settings:save()
+
+                    -- Force update to the display box
+                    update_crafting_levels()
+                end
+                break
+            end
+        end
     end
     if mode == 129 and original:contains('skill rises') then
         for skill_key, skill_name in pairs(crafting_skills) do
