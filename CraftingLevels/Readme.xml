@@ -10,7 +10,7 @@ Description
 The CraftingLevels addon for Final Fantasy XI (FFXI) tracks and displays the current levels of all crafting skills (Fishing, Woodworking, Smithing, Goldsmithing, Clothcraft, Leathercraft, Bonecraft, Alchemy, Cooking). The addon provides a configurable display window to show the crafting levels and allows you to customize font settings, position, and size.
 Features
 
-    Tracks and displays crafting skill levels in real time.
+    Tracks and displays crafting skill levels in real time by keeping track of progress of skill ups and will autoupdate to the correct level once you level up the first time then stay accurate..
     Supports nine crafting skills: Fishing, Woodworking, Smithing, Goldsmithing, Clothcraft, Leathercraft, Bonecraft, Alchemy, and Cooking.
     Customizable display with options for font type, size, and window position.
     Toggle visibility of the display box.
