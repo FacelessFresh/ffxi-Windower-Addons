@@ -42,6 +42,9 @@ The addon supports the following commands:
     /craftinglevels toggle
     Toggles the visibility of the crafting levels display.
 
+    /craftinglevels hidezero
+    Toggles the visibility of crafts with zero skill level.
+
     /craftinglevels setfont [font name]
     Changes the font used in the display. Example usage: /craftinglevels setfont Arial.
 
