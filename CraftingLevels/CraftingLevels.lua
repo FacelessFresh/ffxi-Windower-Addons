@@ -7,6 +7,7 @@ require('tables')
 texts = require('texts')
 config = require('config')
 
+
 settings = config.load({
     skill_levels = {
         Fishing = 0.0, Woodworking = 0.0, Smithing = 0.0, Goldsmithing = 0.0,
@@ -14,8 +15,10 @@ settings = config.load({
     },
     font = 'Rockwell',  -- Default font
     fontsize = 10,      -- Default font size
-    pos = {x = 0, y = 700}  -- Default position
+    pos = {x = 0, y = 700},  -- Default position
+    hide_level_0 = false  -- Default: show all skills
 })
+
 
 local skill_levels = {}
 local crafting_skills = {
@@ -28,7 +31,13 @@ local crafting_skills = {
 function update_crafting_levels()
     local skill_text = 'Crafting Levels:\n'
     for skill, level in pairs(skill_levels) do
-        skill_text = skill_text .. string.format('%s: %.1f\n', skill, level)
+        if settings.hide_level_0 then
+            if level > 0 then  -- Only include skills with levels greater than 0
+                skill_text = skill_text .. string.format('%s: %.1f\n', skill, level)
+            end
+        else
+            skill_text = skill_text .. string.format('%s: %.1f\n', skill, level) -- Show all skills
+        end
     end
     display_box:text(skill_text)
 end
@@ -120,6 +129,11 @@ windower.register_event('addon command', function(command, ...)
             update_crafting_levels()
             display_box:show()
         end
+	elseif command == 'hidezero' then
+		settings.hide_level_0 = not settings.hide_level_0
+		settings:save()
+		windower.add_to_chat(207, "Hiding level 0 skills: " .. (settings.hide_level_0 and "Enabled" or "Disabled"))
+		update_crafting_levels()	
     elseif command == 'setfont' then
         local newFont = ... -- Get the font name from command arguments
         if newFont and newFont ~= "" then
@@ -155,7 +169,6 @@ windower.register_event('unload', function()
     display_box:hide()
     config.save(settings) -- Save settings upon unload
 end)
-
 -- Ensure the display box is hidden properly when logging out
 windower.register_event('logout', function()
     display_box:hide()  -- Hide the box when logging out
