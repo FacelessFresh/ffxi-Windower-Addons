@@ -7,6 +7,8 @@ Overview
 
 The ItemTracker addon is designed to help track the quantity of specific items in your inventory and storage containers within Final Fantasy XI. The addon displays the quantities of the tracked items in an on-screen UI that can be customized for font, size, and position.
 
+Simply Put, it is a way of keeping track of how many of a particular item you have when you are trying to grind drops or mine or gather etc. Just tell it what to track and it'll keep a discreet list on the ui that you can constantly see.
+
 The UI updates dynamically as items are added or removed from your inventory or storage. This addon also provides several commands to track, untrack, and manage the display of tracked items.
 Features
 
