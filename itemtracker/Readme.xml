@@ -1,0 +1,66 @@
+ItemTracker Addon
+
+Author: Faceless
+Version: 8.6.7.5.3.0.9
+Commands: /it, /itemtracker
+Overview
+
+The ItemTracker addon is designed to help track the quantity of specific items in your inventory and storage containers within Final Fantasy XI. The addon displays the quantities of the tracked items in an on-screen UI that can be customized for font, size, and position.
+
+The UI updates dynamically as items are added or removed from your inventory or storage. This addon also provides several commands to track, untrack, and manage the display of tracked items.
+Features
+
+    Track Items: Keep track of items in various containers like inventory, safe, storage, locker, satchel, sack, case, and wardrobe.
+    UI Customization: Change font, size, position, and text color of the displayed tracked items.
+    Save Settings: Your item tracking preferences and UI settings are saved and loaded automatically when logging in or zoning.
+    Easy Commands: Use simple commands to track/untrack items, change font settings, and move the UI around.
+
+Commands
+
+The addon provides the following commands:
+
+    /it trackitem <item_name>: Track an item by name.
+    /it untrackitem <item_name>: Stop tracking an item.
+    /it clearitems: Clear all tracked items.
+    /it setfont <font_name>: Set the font of the tracked item UI.
+    /it setfontsize <size>: Set the font size (valid range: 8-72).
+    /it setpos <x> <y>: Set the position of the tracked items UI on the screen (coordinates).
+
+Example Usage:
+
+    /it trackitem "Phoenix Down": Starts tracking Phoenix Down.
+    /it untrackitem "Phoenix Down": Stops tracking Phoenix Down.
+    /it setfont "Times New Roman": Sets the font to "Times New Roman".
+    /it setfontsize 16: Sets the font size to 16.
+    /it setpos 100 200: Moves the UI to position (100, 200) on the screen.
+
+Installation
+
+    Place the ItemTracker addon folder inside your Addons directory of Final Fantasy XI.
+        The full path should be something like Windower/addons/ItemTracker/.
+    Load the addon in the Windower by typing /console lua load ItemTracker.
+    The UI should now appear on your screen, showing the tracked items and their quantities.
+
+Settings
+
+The addon allows you to customize the appearance and behavior through a settings file that gets automatically saved when you make changes:
+UI Settings:
+
+    Font: The font used in the UI (default: "Arial").
+    Font Size: The size of the text (default: 12).
+    Position: The screen position of the UI (default: x = 0, y = 800).
+    Text Color: The color of the text (default: white).
+    Stroke: Stroke width and transparency for text.
+    Background Color: The color of the background behind the text (default: black with some transparency).
+
+Tracked Items:
+
+The items you're currently tracking are saved in the settings and will persist across login sessions.
+Known Issues
+
+    The position is initially set to (0, 800) by default. If the UI isn't appearing in the expected location, you can use the /it setpos <x> <y> command to move it.
+    Make sure to restart the addon or reload the settings after making UI changes for them to take effect properly.
+
+License
+
+This addon is open-source and free to use. Contributions and improvements are welcome.
