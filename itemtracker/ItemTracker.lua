@@ -63,20 +63,6 @@ function get_item_quantity(item_name)
     return total
 end
 
--- Update UI
-function update_ui()
-    if not tracked_items_ui:visible() then
-        return
-    end
-
-    local text = 'Tracked Items:\n'
-    for item_name, _ in pairs(tracked_items) do
-        local quantity = get_item_quantity(item_name)
-        text = text .. item_name .. ': ' .. quantity .. '\n'
-    end
-    tracked_items_ui:text(text)
-end
-
 -- Show UI
 function show_ui()
     tracked_items_ui:visible(true)
@@ -86,6 +72,31 @@ end
 -- Hide UI
 function hide_ui()
     tracked_items_ui:visible(false)
+end
+
+-- Helper function to sanitize item names (replace spaces with underscores)
+local function sanitize_item_name(item_name)
+    return item_name:gsub(" ", "_") -- Replace spaces with underscores
+end
+
+-- Helper function to unsanitize item names for display (replace underscores with spaces)
+local function unsanitize_item_name(item_name)
+    return item_name:gsub("_", " ") -- Replace underscores with spaces
+end
+
+-- Update UI
+function update_ui()
+    if not tracked_items_ui:visible() then
+        return
+    end
+
+    local text = 'Tracked Items:\n'
+    for sanitized_name, _ in pairs(tracked_items) do
+        local item_name = unsanitize_item_name(sanitized_name)
+        local quantity = get_item_quantity(item_name)
+        text = text .. item_name .. ': ' .. quantity .. '\n'
+    end
+    tracked_items_ui:text(text)
 end
 
 -- Command handler
@@ -99,13 +110,14 @@ windower.register_event('addon command', function(...)
 
     local command = args[1]:lower()
     local item_name = table.concat(args, ' ', 2)
+    local sanitized_name = sanitize_item_name(item_name)
 
     if command == 'trackitem' then
         if item_name == '' then
             print('Please provide an item name to track.')
             return
         end
-        tracked_items[item_name] = true
+        tracked_items[sanitized_name] = true
         print('Tracking item:', item_name)
         update_ui()
         settings.tracked_items = tracked_items
@@ -115,7 +127,7 @@ windower.register_event('addon command', function(...)
             print('Please provide an item name to untrack.')
             return
         end
-        tracked_items[item_name] = nil
+        tracked_items[sanitized_name] = nil
         print('Untracking item:', item_name)
         update_ui()
         settings.tracked_items = tracked_items
@@ -145,17 +157,26 @@ windower.register_event('addon command', function(...)
         settings.ui.fontsize = size
         tracked_items_ui:size(size)
         config.save(settings)
-	elseif command == 'setpos' then
-		local x = tonumber(args[2]) or 0  -- Default to 0 if no x-coordinate is provided
-		local y = tonumber(args[3]) or 0  -- Default to 0 if no y-coordinate is provided
-		tracked_items_ui:pos(x, y)  -- Update position dynamically
-		settings.ui.position = {x = x, y = y}  -- Save the position setting to the correct path in settings
-		config.save(settings)  -- Save settings to file
-		print(string.format("Position set to: (%d, %d)", x, y))
+    elseif command == 'setpos' then
+        local x = tonumber(args[2]) or 0  -- Default to 0 if no x-coordinate is provided
+        local y = tonumber(args[3]) or 0  -- Default to 0 if no y-coordinate is provided
+        tracked_items_ui:pos(x, y)  -- Update position dynamically
+        settings.ui.position = {x = x, y = y}  -- Save the position setting to the correct path in settings
+        config.save(settings)  -- Save settings to file
+        print(string.format("Position set to: (%d, %d)", x, y))
     else
         print('Unknown command:', command)
     end
 end)
+
+-- Update initialization with sanitized item names
+local sanitized_tracked_items = {}
+for item_name, value in pairs(tracked_items) do
+    sanitized_tracked_items[sanitize_item_name(item_name)] = value
+end
+tracked_items = sanitized_tracked_items
+settings.tracked_items = tracked_items
+config.save(settings)
 
 -- Hook inventory changes
 windower.register_event('incoming chunk', function(id, data)
