@@ -168,12 +168,12 @@ end
 
 function listitem:update(player)
     if player then
-        -- Update HP and MP bars as before
-        self:updateBarAndText(self.hpBar, self.hpText, player.hp, player.hpp, player.distance, 'hp')
-        self:updateBarAndText(self.mpBar, self.mpText, player.mp, player.mpp, player.distance, 'mp')
+        -- Update HP and MP bars as before, pass player.name to updateBarAndText
+        self:updateBarAndText(self.hpBar, self.hpText, player.hp, player.hpp, player.distance, 'hp', player.name)
+        self:updateBarAndText(self.mpBar, self.mpText, player.mp, player.mpp, player.distance, 'mp', player.name)
         
         -- Update TP bar independently
-        self:updateBarAndText(self.tpBar, self.tpText, player.tp, player.tpp, player.distance, 'tp')
+        self:updateBarAndText(self.tpBar, self.tpText, player.tp, player.tpp, player.distance, 'tp', player.name)
         
         -- Other updates remain unchanged
         local color = utils:colorFromHex(layout.text.name.color)
@@ -192,7 +192,7 @@ function listitem:update(player)
         -- Set text for player name and zone
         self.nameText:text(player.name)
         self.zoneText:text(player.zone)
-
+		
         -- Handle selection
         self:select(player.isSelected, player.isSubTarget)
         
@@ -216,14 +216,20 @@ function listitem:update(player)
     end
 end
 
-function listitem:updateBarAndText(bar, text, val, valPercent, distance, barType)
-
+function listitem:updateBarAndText(bar, text, val, valPercent, distance, barType, playerName)
+	
+	if valPercent == 0 and val ~= nil and val >= 0 then
+		valPercent = val
+	end
 	if valPercent then
 		bar:update(valPercent / 100)
 	end
 	
+	
 	if val == nil or val < 0 then
 		text:text('')
+	elseif playerName == "Luopan" then  -- Check if playerName is "Luopan"
+        text:text(tostring(val) .. "%")  -- Add "%" for Luopan
 	else
 		text:text(tostring(val))
 	end
@@ -354,4 +360,4 @@ function listitem:hide()
 	end
 end
 
-return listitem
+return listitem0
