@@ -145,11 +145,11 @@ function updatePlayers()
     local partyCount = 0  -- Reset the party count
 
     -- Remove all players and pets from the previous session
-    for i = 0, 5 do
-        local entity = model.players[i]
-        if entity then
+    for i = 0, 6 do
+        local pet = model.players[i]
+        if pet and pet.isPet then
             utils:log('Removing entity with position: '..i, 2)
-            entity:dispose()
+            pet:dispose()
             model.players[i] = nil
         end
     end
@@ -168,8 +168,8 @@ function updatePlayers()
             foundPet.name = playerPet.name
             foundPet.noPet = false
             foundPet.distance = playerPet.distance
-            foundPet.hp = playerPet.hpp
-            foundPet.zone = res.zones[zone].name
+            foundPet.hp = playerPet.hpp  -- Correctly set HP
+            foundPet.zone = nil  -- Remove zone info to avoid showing it in the UI
         else
             utils:log('No pet found, adding placeholder', 2)
             model.players[0] = pet:init()
@@ -187,6 +187,7 @@ function updatePlayers()
     end
 end
 
+--[[
 function updatePlayers()
 	local mainPlayer = windower.ffxi.get_player()
 	local party = T(windower.ffxi.get_party())
@@ -263,7 +264,7 @@ function updatePlayers()
 			view:pos(settings.posX, settings.posY)
 		end
 	end
-end
+end]]
 
 
 -- packets
@@ -472,7 +473,7 @@ function isPetJob()
 	if not player then
 		return false
 	end
-	return S{"SMN","PUP", "BST", "GEO", "DRG"}:contains(windower.ffxi.get_player().main_job)
+	return S{"SMN","PUP", "BST", "GEO", "DRG", "WAR", "MNK", "THF", "RDM", "BLM", "WHM", "PLD", "DRK", "RNG", "COR", "BLU", "DNC", "BRD", "SCH", "NIN", "SAM", "RUN"}:contains(windower.ffxi.get_player().main_job)
 end
 
 function loadLayout(layoutName)
