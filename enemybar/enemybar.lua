@@ -691,6 +691,9 @@ windower.register_event('prerender', function()
 				lock_icon:hide()
 				unlock_icon:show()
 			end
+		elseif target and not windower.ffxi.get_player().target_locked then
+			lock_icon:hide()
+			unlock_icon:show()
 		end
     end
 
