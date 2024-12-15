@@ -131,8 +131,8 @@ function save_icon_positions()
     config.save(settings)
 
     -- Debugging output
-    print('Lock icon position saved:', settings.lock_icon_pos.x, settings.lock_icon_pos.y)
-    print('Unlock icon position saved:', settings.unlock_icon_pos.x, settings.unlock_icon_pos.y)
+    --print('Lock icon position saved:', settings.lock_icon_pos.x, settings.lock_icon_pos.y)
+    --print('Unlock icon position saved:', settings.unlock_icon_pos.x, settings.unlock_icon_pos.y)
 end
 
 
