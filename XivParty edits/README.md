@@ -1,1 +1,3 @@
 This edited file should be able to be copied into the xivparty folder and will then display your master level for the main job instead of the default 99. It will not change when level synced so that you can always see what your actual master level is. It displays as 99 by default but will update to the master level when the packets are received so it may take a few minutes to update but definitely works. I may eventually finish figuring out how to get it to save the last known master level for job/ML combinations and load that each time it boots xivparty but for now this will have to work.
+
+AS ALWAYS, Back up previous files in case you are unsatisfied with what this coding does.
