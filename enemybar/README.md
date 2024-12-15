@@ -1,6 +1,8 @@
 Enemy Bar Addon
 Description
 
+I'm not sure if it'll break anything over the current version compared since this one is adapted off the enemybar2 and has targetlock icon with setup functionality added to it. It seems to work good for me after much debugging but be sure to back up the current enemybar before installing.
+
 The Enemy Bar addon provides a visual display of target information for your main target, sub-target, focus target, and any mobs currently showing aggression toward you or your party. Each bar shows the mob's HP, distance, enmity, and other relevant information.
 Installation
 
