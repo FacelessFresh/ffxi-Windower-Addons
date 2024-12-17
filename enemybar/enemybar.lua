@@ -655,48 +655,54 @@ end
 local last_lock_status = false  -- Moved outside the event handler
 --the following prerender is responsible for updating the ui display.
 windower.register_event('prerender', function()
-    if player_id then
+    local player = windower.ffxi.get_player()
+    if player then
+        local player_id = player.id
+        -- Update the bars only if the player exists
         update_bar(target_bar, windower.ffxi.get_mob_by_target('t'), settings.target_bar.show)
         update_bar(subtarget_bar, windower.ffxi.get_mob_by_target('st'), settings.subtarget_bar.show)
         update_bar(focustarget_bar, state.focustarget and windower.ffxi.get_mob_by_id(state.focustarget) or nil, settings.focustarget_bar.show)
         update_aggro_bars(settings.aggro_bar.show)
+
+        -- Get the current target mob information
+        local target = windower.ffxi.get_mob_by_target('t')
+
+        -- Check the player's lock-on status
+        local current_lock_status = player.target_locked
+
+        if target == nil and not state.setup then
+            -- If no target exists, hide both lock and unlock icons
+            lock_icon:hide()
+            unlock_icon:hide()
+        elseif target and not state.setup then
+            if current_lock_status ~= last_lock_status then
+                -- If lock status changes and target exists, update icons accordingly
+                last_lock_status = current_lock_status
+
+                if current_lock_status then
+                    --print('You have now locked onto a target.')
+                    unlock_icon:hide()
+                    lock_icon:show()
+                else
+                    --print('You are no longer locked onto a target.')
+                    lock_icon:hide()
+                    unlock_icon:show()
+                end
+            elseif target and not player.target_locked then
+                lock_icon:hide()
+                unlock_icon:show()
+            end
+        end
     else
+        -- If the player doesn't exist, clear all bars and icons
         update_bar(target_bar, nil, false)
         update_bar(subtarget_bar, nil, false)
         update_bar(focustarget_bar, nil, false)
         update_aggro_bars(false)
-    end
 
-    -- Get the current target mob information
-    local target = windower.ffxi.get_mob_by_target('t')
-
-    -- Check the player's lock-on status
-    local current_lock_status = windower.ffxi.get_player().target_locked
-
-    if target == nil and not state.setup then
-        -- If no target exists, hide both lock and unlock icons
         lock_icon:hide()
         unlock_icon:hide()
-    elseif target and not state.setup then
-		if current_lock_status ~= last_lock_status then
-			-- If lock status changes and target exists, update icons accordingly
-			last_lock_status = current_lock_status
-
-			if current_lock_status then
-				--print('You have now locked onto a target.')
-				unlock_icon:hide()
-				lock_icon:show()
-			else
-				--print('You are no longer locked onto a target.')
-				lock_icon:hide()
-				unlock_icon:show()
-			end
-		elseif target and not windower.ffxi.get_player().target_locked then
-			lock_icon:hide()
-			unlock_icon:show()
-		end
     end
-
     return current_lock_status
 end)
 
