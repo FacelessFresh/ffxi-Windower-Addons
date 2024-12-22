@@ -368,39 +368,46 @@ local function get_job_points_spent()
 end
 
 function uiListItem:updateJob()
-	local jobpointsspent = get_job_points_spent()
-	local jobString = ''
-	local subJobString = ''
-	
-	if not self.player.isOutsideZone then
-		if self.player.job then
-			jobString = self.player.job
-			if jobpointsspent == 2100 and ep.master_level ~= nil then
-				if self.player.jobLvl then
-					jobString = jobString .. ' ML ' .. tostring(ep.master_level)
-				end
-			else
-				jobString = self.player.job
-				if self.player.jobLvl then
-					jobString = jobString .. ' ' .. tostring(self.player.jobLvl)
-				end
-			end
-		end
+    local jobString = ''
+    local subJobString = ''
 
-		if self.player.subJob and self.player.subJob ~= 'MON' then
-			if self.player.subJob ~= "NON" then 
-				subJobString = self.player.subJob
-				if self.player.subJobLvl then
-					subJobString = subJobString .. ' ' .. tostring(self.player.subJobLvl)
-				end
-			else
-				subJobString = ""
-			end
-		end
-	end
+    if not self.player.isOutsideZone then
+        if self.player.job then
+            jobString = self.player.job
 
-	self.txtJob:update(jobString)
-	self.txtSubJob:update(subJobString)
+            -- Check if this is the main player
+            if self.player.name == windower.ffxi.get_player().name then
+                -- Use master level for the main player
+                local master_level = ep.master_level or 0
+                if master_level > 0 then
+                    jobString = jobString .. ' ML ' .. tostring(master_level)
+                elseif self.player.jobLvl then
+                    jobString = jobString .. ' ' .. tostring(self.player.jobLvl)
+                end
+            else
+                -- Use only job level for other players
+                if self.player.jobLvl then
+                    jobString = jobString .. ' ' .. tostring(self.player.jobLvl)
+                end
+            end
+        end
+
+        -- Build the sub-job string
+        if self.player.subJob and self.player.subJob ~= 'MON' then
+            if self.player.subJob ~= "NON" then
+                subJobString = self.player.subJob
+                if self.player.subJobLvl then
+                    subJobString = subJobString .. ' ' .. tostring(self.player.subJobLvl)
+                end
+            else
+                subJobString = ""
+            end
+        end
+    end
+
+    -- Update the UI elements
+    self.txtJob:update(jobString)
+    self.txtSubJob:update(subJobString)
 end
 
 function uiListItem:updateCursor()
