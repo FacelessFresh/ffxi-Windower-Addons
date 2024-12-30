@@ -37,6 +37,7 @@ require('chat')
 _addon.name = 'PointWatch'
 _addon.author = 'Byrth, Faceless'
 _addon.version = 867.5309
+_addon.date = 12302024
 _addon.command = 'pw'
 
 settings = config.load('data\\settings.xml',default_settings)
@@ -190,55 +191,6 @@ windower.register_event('zone change',function(new,old)
     end
 end)
 
--- Existing command handler function, now expanded with setfont and setsize
-windower.register_event('addon command',function(...)
-    local commands = {...}
-    local first_cmd = table.remove(commands,1):lower()
-    
-    -- Command to set font dynamically
-    if first_cmd == 'setfont' and #commands == 1 then
-        local font_name = commands[1]
-        box:font(font_name)  -- Set the font
-        settings.text_box_settings.font = font_name  -- Save the new font setting
-        config.save(settings)  -- Save settings to file
-        print('PointWatch: Font set to ' .. font_name)
-        
-    -- Command to set font size dynamically
-    elseif first_cmd == 'setsize' and #commands == 1 then
-        local font_size = tonumber(commands[1])
-        if font_size then
-            box:size(font_size)  -- Set the font size
-            settings.text_box_settings.size = font_size  -- Save the new size setting
-            config.save(settings)  -- Save settings to file
-            print('PointWatch: Font size set to ' .. font_size)
-        else
-            print('PointWatch: Invalid font size input. Please provide a number.')
-        end
-
-    elseif approved_commands[first_cmd] and #commands >= approved_commands[first_cmd].n then
-        local tab = {}
-        for i,v in ipairs(commands) do
-            tab[i] = tonumber(v) or v
-            if i <= approved_commands[first_cmd].n and type(tab[i]) ~= approved_commands[first_cmd].t then
-                print('PointWatch: texts library command ('..first_cmd..') requires '..approved_commands[first_cmd].n..' '..approved_commands[first_cmd].t..'-type input'..(approved_commands[first_cmd].n > 1 and 's' or ''))
-                return
-            end
-        end
-        texts[first_cmd](box,unpack(tab))
-        settings.text_box_settings = box.settings()
-        config.save(settings)
-    elseif first_cmd == 'reload' then
-        windower.send_command('lua r pointwatch')
-    elseif first_cmd == 'unload' then
-        windower.send_command('lua u pointwatch')
-    elseif first_cmd == 'reset' then
-        initialize()
-    elseif first_cmd == 'eval' then
-        assert(loadstring(table.concat(commands, ' ')))()
-    else
-        print('PointWatch: Invalid command. Use "setfont <fontname>" or "setsize <fontsize>".')
-    end
-end)
 
 windower.register_event('prerender',function()
     if frame_count%30 == 0 and box:visible() then
@@ -406,6 +358,65 @@ zone_message_functions = {
         abyssea.time_remaining = abyssea.time_remaining + p1
     end,
 }
+
+-- Existing command handler function, now expanded with setfont and setsize
+windower.register_event('addon command',function(...)
+    local commands = {...}
+    local first_cmd = table.remove(commands,1):lower()
+    
+    -- Command to set font dynamically
+    if first_cmd == 'setfont' and #commands == 1 then
+        local font_name = commands[1]
+        box:font(font_name)  -- Set the font
+        settings.text_box_settings.font = font_name  -- Save the new font setting
+        config.save(settings)  -- Save settings to file
+        print('PointWatch: Font set to ' .. font_name)
+        
+    -- Command to set font size dynamically
+    elseif first_cmd == 'setsize' and #commands == 1 then
+        local font_size = tonumber(commands[1])
+        if font_size then
+            box:size(font_size)  -- Set the font size
+            settings.text_box_settings.size = font_size  -- Save the new size setting
+            config.save(settings)  -- Save settings to file
+            print('PointWatch: Font size set to ' .. font_size)
+        else
+            print('PointWatch: Invalid font size input. Please provide a number.')
+        end
+	elseif first_cmd == 'jp' then
+        local current_job_points = get_job_points_spent()
+        local max_job_points = 2100
+        local remaining_job_points = max_job_points - current_job_points
+
+        if current_job_points >= max_job_points then
+            windower.add_to_chat(123, 'You have already mastered this Job.')
+        else
+            windower.add_to_chat(123, string.format('You have spent %d Job Points. %d more to reach Master Level.', current_job_points, remaining_job_points))
+        end
+    elseif approved_commands[first_cmd] and #commands >= approved_commands[first_cmd].n then
+        local tab = {}
+        for i,v in ipairs(commands) do
+            tab[i] = tonumber(v) or v
+            if i <= approved_commands[first_cmd].n and type(tab[i]) ~= approved_commands[first_cmd].t then
+                print('PointWatch: texts library command ('..first_cmd..') requires '..approved_commands[first_cmd].n..' '..approved_commands[first_cmd].t..'-type input'..(approved_commands[first_cmd].n > 1 and 's' or ''))
+                return
+            end
+        end
+        texts[first_cmd](box,unpack(tab))
+        settings.text_box_settings = box.settings()
+        config.save(settings)
+    elseif first_cmd == 'reload' then
+        windower.send_command('lua r pointwatch')
+    elseif first_cmd == 'unload' then
+        windower.send_command('lua u pointwatch')
+    elseif first_cmd == 'reset' then
+        initialize()
+    elseif first_cmd == 'eval' then
+        assert(loadstring(table.concat(commands, ' ')))()
+    else
+        print('PointWatch: Invalid command. Use "setfont <fontname>" or "setsize <fontsize>".')
+    end
+end)
 
 function exp_msg(val,msg)
     local t = os.clock()
