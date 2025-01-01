@@ -64,7 +64,8 @@ local hidden = false
 local layoutAuto = 'auto'
 local layout1080 = '1080p'
 local layout1440 = '1440p'
-
+local pethp = 0
+local petNames = "Luopan"
 -- initialization / dispose / events
 
 windower.register_event('load', function()
@@ -139,7 +140,7 @@ windower.register_event('prerender', function()
 	updatePlayers()
 	view:update()
 end)
-function updatePlayers()
+--[[function updatePlayers()
     local playerPet = windower.ffxi.get_mob_by_target('pet')
     local zone = windower.ffxi.get_info().zone
     local partyCount = 0  -- Reset the party count
@@ -185,9 +186,9 @@ function updatePlayers()
             view:pos(settings.posX, settings.posY)
         end
     end
-end
+end]]
 
---[[
+
 function updatePlayers()
 	local mainPlayer = windower.ffxi.get_player()
 	local party = T(windower.ffxi.get_party())
@@ -236,15 +237,36 @@ function updatePlayers()
 	if isPetJob() then
 		partyCount = partyCount +1
 		if playerPet then
-			local foundPet = model:findAndSortPlayer(playerPet, j)
-			if not foundPet then
-				utils:log('Creating new pet: '..playerPet.name..' at '..j, 2)
-				model.players[j] = pet:init()
+			-- Reset pet HP when job changing
+			if not petNames or petNames ~= playerPet.name then
+				pethp = 0 -- Reset pethp to avoid carrying over incorrect values
+				petNames = playerPet.name
 			end
-			local foundPet = model.players[j]
-			foundPet.name = playerPet.name
-			foundPet.noPet = false
-			foundPet.distance = playerPet.distance
+			if petNames == "Luopan" or pethp == 0 then
+				local foundPet = model:findAndSortPlayer(playerPet, j)
+				if not foundPet then
+					utils:log('Creating new pet: '..playerPet.name..' at '..j, 2)
+					model.players[j] = pet:init()
+				end
+				local foundPet = model.players[j]
+				foundPet.name = playerPet.name
+				foundPet.noPet = false
+				foundPet.distance = playerPet.distance
+				foundPet.hp = playerPet.hpp  -- Correctly set HP
+				foundPet.zone = nil  -- Remove zone info to avoid showing it in the UI		
+			else
+				local foundPet = model:findAndSortPlayer(playerPet, j)
+				if not foundPet then
+					utils:log('Creating new pet: '..playerPet.name..' at '..j, 2)
+					model.players[j] = pet:init()
+				end
+				local foundPet = model.players[j]
+				foundPet.name = playerPet.name
+				foundPet.noPet = false
+				foundPet.distance = playerPet.distance
+				foundPet.hp = pethp  -- Correctly set HP
+				foundPet.zone = nil  -- Remove zone info to avoid showing it in the UI
+			end
 		else
 			model.players[j] = pet:init()
 			local foundPet = model.players[j]
@@ -264,7 +286,7 @@ function updatePlayers()
 			view:pos(settings.posX, settings.posY)
 		end
 	end
-end]]
+end
 
 
 -- packets
@@ -373,6 +395,7 @@ function updatePetFromPacket(id, original)
 	if id == 0x44 then
 		packet = packets.parse('incoming', original)
 		local petName = original:unpack('z', 0x59)
+		petNames = petName
 		if petName == "" then
 			return
 		end
@@ -391,6 +414,7 @@ function updatePetFromPacket(id, original)
 			--						..', name: '.. original:unpack('z', 0x59)
 			--					)
 			pet.hp = current_hp
+			pethp = current_hp
 			pet.mp = current_mp
 			pet.maxhp = max_hp
 			pet.maxmp = max_mp
@@ -404,6 +428,7 @@ function updatePetFromPacket(id, original)
 			else
 				pet.mpp = 0
 			end
+			return pethp, petNames
 		end
 
 	elseif id == 0x67 or id == 0x068 then    -- general hp/tp/mp update
