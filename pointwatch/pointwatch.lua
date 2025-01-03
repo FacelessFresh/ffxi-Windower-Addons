@@ -260,7 +260,7 @@ function update_box()
     local merit_points = lp.number_of_merits or 0
     local job_points = cp.number_of_job_points or 0
     local ep_current = ep.current or 0
-    local ep_tnl = ep.tnl or 0 -- Default value for ep.tnl
+    local ep_tnl = ep.tnml or 0 -- Default value for ep.tnl
 	
 	if player.main_job_level >= 75 and player.main_job_level ~= 99 then
         current_string = current_string .. string.format('Merit Points: %d | XP: %d @ %d /hr\n', merit_points, xp.current, xp.rate)
@@ -272,8 +272,8 @@ function update_box()
 
     -- Check for master level achievement and Display EP/hr if available
     if jobpointsspent >= 2100 then
-        current_string = current_string .. string.format('Merit Points: %d | Job Points: %d | EP: %d @ %d /hr\n', 
-            merit_points, job_points, ep_current, ep.rate)
+        current_string = current_string .. string.format('Merit Points: %d | Job Points: %d | EP: %d/%d @ %d /hr\n', 
+            merit_points, job_points, ep_current, ep_tnl, ep.rate)
     end
 
     -- Update the box display with the current string
@@ -393,6 +393,10 @@ windower.register_event('addon command',function(...)
         else
             windower.add_to_chat(123, string.format('You have spent %d Job Points. %d more to reach Master Level.', current_job_points, remaining_job_points))
         end
+	elseif first_cmd == 'loss' then
+		local current_ML = ep.tnml
+		local estimate_loss = current_ML * .02
+		windower.add_to_chat(123, string.format('If you die you will lose %d at your current Master Level.', estimate_loss))
     elseif approved_commands[first_cmd] and #commands >= approved_commands[first_cmd].n then
         local tab = {}
         for i,v in ipairs(commands) do
