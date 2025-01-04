@@ -24,8 +24,8 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 --]]
 
 _addon.name = 'enemybar'
-_addon.author = 'mmckee,akaden'
-_addon.version = '1.1.0'
+_addon.author = 'mmckee,akaden,facelessfresh'
+_addon.version = '1.4.2025'
 _addon.language = 'English'
 _addon.commands = {'enemybar','eb'}
 
@@ -46,10 +46,11 @@ local state = {}
 state.setup = false
 state.focustarget = nil
 state.in_cs = false
+settings = config.load('data\\settings.xml',default_settings)
 
 defaults = {}
-defaults.lock_icon_pos = {pos={x=1900,y=900}}
-defaults.unlock_icon_pos = {pos={x=1900,y=900}}
+defaults.lock_icon_pos = {pos={x = settings.lock_icon_pos.x or 500, y = settings.lock_icon_pos.y or 500}} 
+defaults.unlock_icon_pos = {pos={x = settings.unlock_icon_pos.x or 500, y = settings.unlock_icon_pos.y or 500}}
 defaults.target_bar = {
     pos={x=650,y=750}, width=190,
     color={alpha=255,red=225,green=120,blue=0},
@@ -84,8 +85,6 @@ if settings_old.pos then
     defaults.target_bar.font_size = settings_old.font_size
     defaults.subtarget_bar.font_size = settings_old.font_size
 end
-
-settings = config.load(defaults)
 
 local lock_icon = images.new({
     pos = {x = settings.lock_icon_pos.x, y = settings.lock_icon_pos.y},        -- Position on screen
