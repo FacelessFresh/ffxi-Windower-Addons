@@ -31,6 +31,39 @@ local bar = require('bar')
 local listitem = {}
 listitem.__index = listitem
 
+local automatonNames = {
+    "Luron", "Nadeshiko", "Otto", "Fukusuke", "Centurion", "Robby", "Drille",
+    "E100", "Gustav", "Mataemon", "A7V", "Porlo-Moperlo", "Tournefoux", "Koume",
+    "Muffin", "Kansuke", "Scipio", "Paroko-Puronko", "Chafouin", "X-32", "Xaver",
+    "Polichinelle", "Sentinel", "Pipima", "Plaisantin", "Poppo", "Toni", "Tobisuke",
+    "Pioneer", "Gagaja", "Loustic", "Asuka", "Ina", "Sasuke", "Seneschal", "Mobil",
+    "Histrion", "Sakura", "Gerda", "Shijimi", "Ginjin", "Donzel", "Bobeche", "Tao",
+    "Petra", "Chobi", "Amagatsu", "Archer", "Bougrion", "Mao", "Verena", "Aurelie",
+    "Dolly", "Shooter", "Rouleteau", "Gadget", "Rosi", "Magalie", "Fantoccini",
+    "Stephen", "Allouette", "Marion", "Schatzi", "Aurore", "Joe", "Mk.IV", "Serenade",
+    "Widget", "Warashi", "Caroline", "Kikizaru", "Conjurer", "Ficelette", "Quirk",
+    "Klingel", "Andrea", "Whippet", "Footman", "Tocadie", "Sprocket", "Clochette",
+    "Machinette", "Punchinello", "Tokotoko", "Caprice", "Cogette", "Campanello",
+    "Clarine", "Charlie", "Sancho", "Foucade", "Lecter", "Kaiserin", "Armelle",
+    "Midge", "Sarumaro", "Capillotte", "Coppelia", "Principessa", "Reinette",
+    "Petrouchka", "Picket", "Quenotte", "Sparky", "Butler", "Dorlote", "Schneider",
+    "Mushroom", "Pacotille", "Clank", "Graf", "Turlupin", "Ushabti", "Comedie",
+    "Calcobrena", "Caro", "Klaxon", "Noel", "Kagekiyo", "Crackle", "Cara", "Bambino",
+    "Yajirobe", "Toraoh", "Ricochet", "Mademoiselle", "Potiron", "Hina", "Genta",
+    "Josette", "Herzog", "Fustige", "Nora", "Kintoki", "Fritz", "Tramp", "Amidon",
+    "Shoki", "Koumei", "Skippy", "V-1000", "Machin", "Kobina", "Pamama", "Pino",
+    "Hikozaemon", "Bidulon", "Kokeshi", "Lobo", "Mandarin", "Nine", "Tandem", "Mame",
+    "Tsukushi", "Jackstraw", "Acht", "Prestidige", "Bishop", "Oniwaka", "Guignol",
+    "Quattro", "Purute-Porute", "Marvin", "Kenbishi", "Moppet", "Zero", "Bito-Rabito",
+    "Dora", "Hannya", "Nutcracker", "Dreizehn", "Cocoa", "Data", "Mashira", "Erwin",
+    "Seize", "Totomo", "Robin"
+}
+-- Convert table to a quick lookup set
+local automatonSet = {}
+for _, name in ipairs(automatonNames) do
+    automatonSet[name] = true
+end
+
 function listitem:init()
 	utils:log('Initializing party list element', 1)
 
@@ -225,11 +258,10 @@ function listitem:updateBarAndText(bar, text, val, valPercent, distance, barType
 		bar:update(valPercent / 100)
 	end
 	
-	
 	if val == nil or val < 0 then
 		text:text('')
-	elseif playerName == "Luopan" then  -- Check if playerName is "Luopan"
-        text:text(tostring(val) .. "%")  -- Add "%" for Luopan
+	elseif not automatonSet[playerName] then  -- Check if is not an Automaton
+        text:text(tostring(val) .. "%")  -- Add "%" for non Automatons
 	else
 		text:text(tostring(val))
 	end
@@ -360,4 +392,4 @@ function listitem:hide()
 	end
 end
 
-return listitem0
+return listitem
