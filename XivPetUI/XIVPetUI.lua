@@ -66,6 +66,39 @@ local layout1080 = '1080p'
 local layout1440 = '1440p'
 local pethp = 0
 local petNames = "Luopan"
+local automatonNames = {
+    "Luron", "Nadeshiko", "Otto", "Fukusuke", "Centurion", "Robby", "Drille",
+    "E100", "Gustav", "Mataemon", "A7V", "Porlo-Moperlo", "Tournefoux", "Koume",
+    "Muffin", "Kansuke", "Scipio", "Paroko-Puronko", "Chafouin", "X-32", "Xaver",
+    "Polichinelle", "Sentinel", "Pipima", "Plaisantin", "Poppo", "Toni", "Tobisuke",
+    "Pioneer", "Gagaja", "Loustic", "Asuka", "Ina", "Sasuke", "Seneschal", "Mobil",
+    "Histrion", "Sakura", "Gerda", "Shijimi", "Ginjin", "Donzel", "Bobeche", "Tao",
+    "Petra", "Chobi", "Amagatsu", "Archer", "Bougrion", "Mao", "Verena", "Aurelie",
+    "Dolly", "Shooter", "Rouleteau", "Gadget", "Rosi", "Magalie", "Fantoccini",
+    "Stephen", "Allouette", "Marion", "Schatzi", "Aurore", "Joe", "Mk.IV", "Serenade",
+    "Widget", "Warashi", "Caroline", "Kikizaru", "Conjurer", "Ficelette", "Quirk",
+    "Klingel", "Andrea", "Whippet", "Footman", "Tocadie", "Sprocket", "Clochette",
+    "Machinette", "Punchinello", "Tokotoko", "Caprice", "Cogette", "Campanello",
+    "Clarine", "Charlie", "Sancho", "Foucade", "Lecter", "Kaiserin", "Armelle",
+    "Midge", "Sarumaro", "Capillotte", "Coppelia", "Principessa", "Reinette",
+    "Petrouchka", "Picket", "Quenotte", "Sparky", "Butler", "Dorlote", "Schneider",
+    "Mushroom", "Pacotille", "Clank", "Graf", "Turlupin", "Ushabti", "Comedie",
+    "Calcobrena", "Caro", "Klaxon", "Noel", "Kagekiyo", "Crackle", "Cara", "Bambino",
+    "Yajirobe", "Toraoh", "Ricochet", "Mademoiselle", "Potiron", "Hina", "Genta",
+    "Josette", "Herzog", "Fustige", "Nora", "Kintoki", "Fritz", "Tramp", "Amidon",
+    "Shoki", "Koumei", "Skippy", "V-1000", "Machin", "Kobina", "Pamama", "Pino",
+    "Hikozaemon", "Bidulon", "Kokeshi", "Lobo", "Mandarin", "Nine", "Tandem", "Mame",
+    "Tsukushi", "Jackstraw", "Acht", "Prestidige", "Bishop", "Oniwaka", "Guignol",
+    "Quattro", "Purute-Porute", "Marvin", "Kenbishi", "Moppet", "Zero", "Bito-Rabito",
+    "Dora", "Hannya", "Nutcracker", "Dreizehn", "Cocoa", "Data", "Mashira", "Erwin",
+    "Seize", "Totomo", "Robin"
+}
+
+-- Convert table to a quick lookup set
+local automatonSet = {}
+for _, name in ipairs(automatonNames) do
+    automatonSet[name] = true
+end
 -- initialization / dispose / events
 
 windower.register_event('load', function()
@@ -235,14 +268,28 @@ function updatePlayers()
 	utils:log('Adding Pet with PartyCount: '..partyCount, 0)
 	local j = partyCount
 	if isPetJob() then
+		--print(petNames)
 		partyCount = partyCount +1
 		if playerPet then
 			-- Reset pet HP when job changing
-			if not petNames or petNames ~= playerPet.name then
-				pethp = 0 -- Reset pethp to avoid carrying over incorrect values
+			if not petNames == playerPet.name then
+				--pethp = 0 -- Reset pethp to avoid carrying over incorrect values
 				petNames = playerPet.name
+				--print(petNames .. "=" .. playerPet.name)
 			end
-			if petNames == "Luopan" or pethp == 0 then
+			if automatonSet[playerPet.name] then
+				local foundPet = model:findAndSortPlayer(playerPet, j)
+				if not foundPet then
+					utils:log('Creating new pet: '..playerPet.name..' at '..j, 2)
+					model.players[j] = pet:init()
+				end
+				local foundPet = model.players[j]
+				foundPet.name = playerPet.name
+				foundPet.noPet = false
+				foundPet.distance = playerPet.distance
+				foundPet.hp = pethp  -- Correctly set HP
+				foundPet.zone = nil  -- Remove zone info to avoid showing it in the UI
+			elseif not automatonSet[playerPet.name] then
 				local foundPet = model:findAndSortPlayer(playerPet, j)
 				if not foundPet then
 					utils:log('Creating new pet: '..playerPet.name..' at '..j, 2)
@@ -253,7 +300,9 @@ function updatePlayers()
 				foundPet.noPet = false
 				foundPet.distance = playerPet.distance
 				foundPet.hp = playerPet.hpp  -- Correctly set HP
-				foundPet.zone = nil  -- Remove zone info to avoid showing it in the UI		
+				foundPet.zone = nil  -- Remove zone info to avoid showing it in the UI
+			elseif not playerPet then
+				fountPet.hp = ""
 			else
 				local foundPet = model:findAndSortPlayer(playerPet, j)
 				if not foundPet then
@@ -421,7 +470,7 @@ function updatePetFromPacket(id, original)
 			if pet.maxhp ~= 0 then
 				pet.hpp = math.floor(100 * pet.hp / pet.maxhp)
 			else
-				pet.hpp = 0
+				--pet.hpp = 0
 			end
 			if pet.maxmp ~= 0 then
 				pet.mpp = math.floor(100 * pet.mp / pet.maxmp)
